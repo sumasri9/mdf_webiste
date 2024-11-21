@@ -1,0 +1,3 @@
+{
+  "/api/cmos_battery/route": "app/api/cmos_battery/route.js"
+}

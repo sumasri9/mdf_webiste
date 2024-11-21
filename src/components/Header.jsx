@@ -26,7 +26,7 @@ export default function Header() {
                   Home
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/about"
                   className="hover:text-gray-300 transition duration-300"
@@ -41,7 +41,7 @@ export default function Header() {
                 >
                   Contact
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </nav>
 

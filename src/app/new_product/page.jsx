@@ -252,23 +252,30 @@ const NewProduct = () => {
     }
   }, [productName]);
 
+  // useEffect(() => {
+  //   if (driveType === "hdd") {
+  //     setSsdType("");
+  //     setSsdCapacity("");
+  //     setSsdFormFactor("");
+  //   } else if (driveType === "ssd") {
+  //     setHddType("");
+  //     // setFormFactor("");
+  //     setHddCapacity("");
+  //   }
+  // }, [driveType]);
   useEffect(() => {
     if (driveType === "hdd") {
-      setSsdType("");
-      setSsdCapacity("");
-      setSsdFormFactor("");
+      setFormFactor(""); // Reset form factor for HDD
     } else if (driveType === "ssd") {
-      setHddType("");
-      setFormFactor("");
-      setHddCapacity("");
+      setFormFactor(""); // Reset form factor for SSD
     }
   }, [driveType]);
 
-  useEffect(() => {
-    if (ssdType) {
-      setSsdFormFactor("");
-    }
-  }, [ssdType]);
+  // useEffect(() => {
+  //   if (ssdType) {
+  //     setSsdFormFactor("");
+  //   }
+  // }, [ssdType]);
 
   useEffect(() => {
     setHddCapacity("");
@@ -309,43 +316,29 @@ const NewProduct = () => {
     }
   }, [pcieCapacity]);
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   console.log(
-  //     "Product Name: ",
-  //     productName,
-  //     "\nRam Type: ",
-  //     ramType,
-  //     "\nGeneration: ",
-  //     ramGeneration,
-  //     "\nSpeed: ",
-  //     ramSpeed,
-  //     "\nCapacity: ",
-  //     ramCapacity,
-  //     "\nQuantity: ",
-  //     quantity
-  //   );
-  //   const formData = {
-  //     ramType,
-  //     ramGeneration,
-  //     ramSpeed,
-  //     ramCapacity,
-  //     quantity: parseInt(quantity),
-  //   };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     let formData;
+    let apiEndpoint = "/api/new-product";
 
+    if (productName === "cmosBatteries") {
+      formData = {
+        quantity: parseInt(quantity),
+      };
+      apiEndpoint = "/api/cmos_battery";
+    }
     if (productName === "drives") {
       // Handle drive-specific data
       formData = {
         ssdType: driveType === "ssd" ? ssdType : null,
         hddType: driveType === "hdd" ? hddType : null,
         formFactor,
+        // ssdFormFactor,
         capacity: driveType === "ssd" ? ssdCapacity : hddCapacity,
         quantity: parseInt(quantity),
       };
+      apiEndpoint = "/api/drives";
     } else if (productName === "ramDimm") {
       // Handle RAM-specific data
       formData = {
@@ -370,7 +363,7 @@ const NewProduct = () => {
       };
     }
     try {
-      const response = await fetch("/api/new-product", {
+      const response = await fetch(apiEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
