@@ -8,6 +8,7 @@ import Logo from "@/components/Logo";
 export default function MDFRoom() {
   const router = useRouter();
   const [ramData, setRamData] = useState(null);
+  const [cmosQuantity, setCmosQuantity] = useState(null);
 
   useEffect(() => {
     if (!sessionStorage.getItem("loggedIn")) {
@@ -34,7 +35,15 @@ export default function MDFRoom() {
       }
 
       const data = await response.json();
+
+      data.ramCapacities.sort((a, b) => {
+        const capacityA = parseInt(a.ram_capacity.replace(/GB/i, ""), 10);
+        const capacityB = parseInt(b.ram_capacity.replace(/GB/i, ""), 10);
+        return capacityA - capacityB;
+      });
+
       setRamData(data);
+      setCmosQuantity(data.cmosQuantity);
     } catch (error) {
       console.error("Error fetching RAM data:", error);
     }
@@ -72,6 +81,8 @@ export default function MDFRoom() {
               </li>
             ))}
           </ul>
+          <h2 className="text-2xl font-semibold mt-6">CMOS Batteries</h2>
+          <p>Total CMOS Batteries: {cmosQuantity}</p>
         </div>
       )}
       <div className="cursor w-3 h-3 bg-yellow-500 rounded-full fixed pointer-events-none transform -translate-x-1/2 -translate-y-1/2 shadow-lg"></div>

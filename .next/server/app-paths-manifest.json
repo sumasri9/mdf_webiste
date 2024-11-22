@@ -2,6 +2,5 @@
   "/page": "app/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/login/page": "app/login/page.js",
-  "/new_product/page": "app/new_product/page.js",
-  "/api/cmos_battery/route": "app/api/cmos_battery/route.js"
+  "/api/getData/route": "app/api/getData/route.js"
 }

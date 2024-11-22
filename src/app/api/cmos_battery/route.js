@@ -66,7 +66,7 @@ export async function POST(req) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error handling POST request:", error);
+    console.log("Error handling POST request:", error);
     return NextResponse.json(
       {
         success: false,

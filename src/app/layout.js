@@ -24,7 +24,7 @@ export const metadata = {
 const Footer = () => {
   return (
     <footer className="p-4 bg-gray-800 text-white text-center">
-      <p>&copy; {new Date().getFullYear()} My Company. All rights reserved.</p>
+      <p>&copy; {new Date().getFullYear()} OSCER. All rights reserved.</p>
     </footer>
   );
 };

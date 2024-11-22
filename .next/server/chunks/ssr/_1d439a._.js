@@ -188,7 +188,7 @@ const Footer = ()=>{
             children: [
                 "© ",
                 new Date().getFullYear(),
-                " My Company. All rights reserved."
+                " OSCER. All rights reserved."
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/layout.js",

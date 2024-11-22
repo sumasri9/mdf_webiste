@@ -320,7 +320,7 @@ const NewProduct = () => {
     e.preventDefault();
 
     let formData;
-    let apiEndpoint = "/api/new-product";
+    let apiEndpoint = "/api/ram_dimm";
 
     if (productName === "cmosBatteries") {
       formData = {
