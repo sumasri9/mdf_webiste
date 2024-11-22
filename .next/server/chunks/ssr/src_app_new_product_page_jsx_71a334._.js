@@ -402,7 +402,7 @@ const NewProduct = ()=>{
     const handleSubmit = async (e)=>{
         e.preventDefault();
         let formData;
-        let apiEndpoint = "/api/new-product";
+        let apiEndpoint = "/api/ram_dimm";
         if (productName === "cmosBatteries") {
             formData = {
                 quantity: parseInt(quantity)

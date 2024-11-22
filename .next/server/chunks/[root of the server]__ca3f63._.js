@@ -58,15 +58,28 @@ __turbopack_esm__({
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/server.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$__$5b$external$5d$__$28$pg$2c$__cjs$29$__ = __turbopack_import__("[externals]/ [external] (pg, cjs)");
+(()=>{
+    const e = new Error("Cannot find module 'dotenv'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
+;
 ;
 ;
 // PostgreSQL connection configuration
+// const pool = new Pool({
+//   user: "stockedit",
+//   host: "localhost",
+//   database: "stockinfo",
+//   password: "oru2ioFaPugheec7",
+//   port: 5433,
+// });
 const pool = new __TURBOPACK__imported__module__$5b$externals$5d2f$__$5b$external$5d$__$28$pg$2c$__cjs$29$__["Pool"]({
-    user: "stockedit",
-    host: "localhost",
-    database: "stockinfo",
-    password: "oru2ioFaPugheec7",
-    port: 5433
+    user: process.env.PG_USER,
+    host: process.env.PG_HOST,
+    database: process.env.PG_DATABASE,
+    password: process.env.PG_PASSWORD,
+    port: process.env.PG_PORT
 });
 // Function to insert or update CMOS battery quantity
 async function insertOrUpdateCMOSQuantity(newQuantity) {
@@ -120,7 +133,7 @@ async function POST(req) {
             status: 200
         });
     } catch (error) {
-        console.error("Error handling POST request:", error);
+        console.log("Error handling POST request:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: false,
             error: "Failed to process the request"

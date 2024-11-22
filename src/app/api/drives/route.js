@@ -9,12 +9,20 @@ import { Pool } from "pg";
 //   port: 5432,
 // });
 
+// const pool = new Pool({
+//   user: "stockedit",
+//   host: "localhost",
+//   database: "stockinfo",
+//   password: "oru2ioFaPugheec7",
+//   port: 5433,
+// });
+
 const pool = new Pool({
-  user: "stockedit",
-  host: "localhost",
-  database: "stockinfo",
-  password: "oru2ioFaPugheec7",
-  port: 5433,
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: process.env.PG_PORT,
 });
 
 // Function to insert or update drive details
